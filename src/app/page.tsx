@@ -1,3 +1,9 @@
+import LeftSideBar from "./components/ui/LeftSideBar";
+
 export default function Home() {
-  return <>Hello world</>;
+  return (
+    <>
+      <LeftSideBar />
+    </>
+  );
 }
