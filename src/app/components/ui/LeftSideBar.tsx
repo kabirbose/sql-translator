@@ -1,5 +1,5 @@
-import ConnectionInfo from "./ConnectionInfo";
-import History from "./History";
+import ConnectionInfo from "../connection/ConnectionInfo";
+import History from "../history/History";
 
 export default function LeftSideBar() {
   return (
