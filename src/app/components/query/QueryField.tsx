@@ -50,7 +50,7 @@ export default function QueryField() {
         <button
           onClick={handleQueryAction}
           disabled={loading}
-          className="bg-purple-600 p-2 rounded-md"
+          className="bg-blue-600 p-2 rounded-md"
         >
           Query
         </button>

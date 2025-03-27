@@ -12,7 +12,7 @@ export default function ConnectionInfoField({
   value,
 }: Props) {
   return (
-    <div className="w-[18rem] flex justify-between items-center">
+    <div className="w-[18rem] flex justify-between items-center rounded-md">
       <label>{text}: </label>
       <input
         type={type || "text"}

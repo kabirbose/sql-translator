@@ -1,7 +1,7 @@
 "use client";
 
 import ConnectionInfoField from "./ConnectionInfoField";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 export default function ConnectionInfo() {
   const [hostname, setHostname] = useState("");
@@ -11,9 +11,9 @@ export default function ConnectionInfo() {
   const [database, setDatabase] = useState("");
 
   return (
-    <div className="h-[17rem] p-5 flex flex-col gap-2 border-b-2 border-zinc-800">
+    <div className="h-[18rem] p-5 flex flex-col gap-2 border-b-2 border-zinc-800">
       <p className="font-bold">Connection</p>
-      <form className="flex flex-col gap-2">
+      <form className="flex flex-col justify-start items-start gap-2">
         <ConnectionInfoField
           onChange={(
             e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
