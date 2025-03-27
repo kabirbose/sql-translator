@@ -7,12 +7,6 @@ export default function QueryField() {
   const [response, setResponse] = useState("");
   const [query, setQuery] = useState("");
 
-  const handleQueryVal = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setQuery(e.target.value);
-  };
-
   const handleQueryAction = async () => {
     setLoading(true);
     setResponse("");
@@ -46,9 +40,11 @@ export default function QueryField() {
 
       <div className="flex justify-start items-center p-2 gap-5">
         <input
-          className="bg-zinc-700 p-2 rounded-full w-[90%]"
+          className="bg-zinc-700 p-2 rounded-full w-[90%] outline-0 border-0"
           placeholder="Create a new table called 'employees' and add 5 characters from The Office to it."
-          onChange={handleQueryVal}
+          onChange={(
+            e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+          ) => setQuery(e.target.value)}
           value={query}
         />
         <button
