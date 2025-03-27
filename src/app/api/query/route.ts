@@ -1,11 +1,12 @@
 import "dotenv/config";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { ChatGroq } from "@langchain/groq";
 import { SqlDatabase } from "langchain/sql_db";
 import { DataSource } from "typeorm";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 
-export async function POST() {
+export async function POST(req: NextRequest) {
+  const { query } = await req.json();
   try {
     const db = await SqlDatabase.fromDataSourceParams({
       appDataSource: new DataSource({
@@ -23,8 +24,6 @@ export async function POST() {
       temperature: 0,
     });
 
-    const query =
-      "Create a new table called 'employees' and add 5 characters from The Office to it.";
     const messages = [
       new SystemMessage(`
         Convert the statement into a Postgres SQL query. 

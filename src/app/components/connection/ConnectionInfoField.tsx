@@ -9,7 +9,7 @@ export default function ConnectionInfoField({ text, type }: Props) {
       <label>{text}: </label>
       <input
         type={type || "text"}
-        className="bg-zinc-800 outline-0 border-0 rounded-md p-1"
+        className="bg-zinc-800 outline-0 border-0 p-1"
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import QueryField from "../query-field/QueryField";
+import QueryField from "../query/QueryField";
 
 export default function RightScreen() {
   return (
