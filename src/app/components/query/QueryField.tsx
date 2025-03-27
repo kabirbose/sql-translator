@@ -26,7 +26,7 @@ export default function QueryField() {
       const data = await res.json();
 
       if (data.success) {
-        setResponse(`Query executed:\n${data.query}`);
+        setResponse(`${data.query}`);
       } else {
         setResponse(`Error: ${data.error}`);
       }
@@ -39,10 +39,10 @@ export default function QueryField() {
 
   return (
     <div>
-      <p>{loading ? "Loading..." : ""}</p>
-      {response && (
-        <p className="mt-4 p-2 bg-gray-900 text-white">{response}</p>
-      )}
+      <p>{loading ? "Generating..." : ""}</p>
+      <p className="mt-4 p-2 bg-zinc-900 text-purple-400 font-mono h-[20rem]">
+        {response}
+      </p>
 
       <div className="flex justify-start items-center p-2 gap-5">
         <input
@@ -54,7 +54,7 @@ export default function QueryField() {
         <button
           onClick={handleQueryAction}
           disabled={loading}
-          className="bg-purple-700 p-2 rounded-md"
+          className="bg-purple-600 p-2 rounded-md"
         >
           Query
         </button>
