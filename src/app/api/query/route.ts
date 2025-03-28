@@ -6,16 +6,17 @@ import { DataSource } from "typeorm";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 
 export async function POST(req: NextRequest) {
-  const { query } = await req.json();
+  const { query, hostname, portId, username, password, database } =
+    await req.json();
   try {
     const db = await SqlDatabase.fromDataSourceParams({
       appDataSource: new DataSource({
         type: "postgres",
-        host: process.env.PG_HOST || "localhost",
-        port: Number(process.env.PG_PORT) || 5432,
-        username: process.env.PG_USER || "postgres",
-        password: process.env.PG_PASSWORD || "postgres",
-        database: process.env.PG_DATABASE || "postgres",
+        host: hostname || "localhost",
+        port: Number(portId) || 5432,
+        username: username || "postgres",
+        password: password || "postgres",
+        database: database || "postgres",
       }),
     });
 
@@ -28,7 +29,8 @@ export async function POST(req: NextRequest) {
       new SystemMessage(`
         Convert the statement into a Postgres SQL query. 
         Just the query itself, no other AI boilerplate.
-        Remove unnecessary whitespace, ensure the entire query is on one line.
+        Remove unnecessary whitespace, but keep spaces between the commands so they still work.
+        Ensure the entire query is on one line.
       `),
       new HumanMessage(query),
     ];

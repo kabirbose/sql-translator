@@ -1,11 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { useConnectionContext } from "@/app/context/ConnectionContext";
 
 export default function QueryField() {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState("");
   const [query, setQuery] = useState("");
+
+  const { hostname, portId, username, password, database } =
+    useConnectionContext();
 
   const handleQueryAction = async () => {
     setLoading(true);
@@ -15,7 +19,14 @@ export default function QueryField() {
       const res = await fetch("/api/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({
+          query,
+          hostname,
+          portId,
+          username,
+          password,
+          database,
+        }),
       });
       const data = await res.json();
 
@@ -34,7 +45,7 @@ export default function QueryField() {
   return (
     <div>
       <p>{loading ? "Generating..." : ""}</p>
-      <p className="mt-4 p-2 bg-zinc-900 text-purple-400 font-mono h-[20rem]">
+      <p className="mt-4 p-2 bg-zinc-900 text-purple-400 font-mono h-[20rem] rounded-md">
         {response}
       </p>
 

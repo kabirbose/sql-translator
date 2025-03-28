@@ -1,14 +1,21 @@
 "use client";
 
 import ConnectionInfoField from "./ConnectionInfoField";
-import { useState, useContext } from "react";
+import { useConnectionContext } from "@/app/context/ConnectionContext";
 
 export default function ConnectionInfo() {
-  const [hostname, setHostname] = useState("");
-  const [portId, setPortId] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [database, setDatabase] = useState("");
+  const {
+    hostname,
+    setHostname,
+    portId,
+    setPortId,
+    username,
+    setUsername,
+    password,
+    setPassword,
+    database,
+    setDatabase,
+  } = useConnectionContext();
 
   return (
     <div className="h-[18rem] p-5 flex flex-col gap-2 border-b-2 border-zinc-800">
