@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useConnectionContext } from "@/app/context/ConnectionContext";
+import { useHistoryContext } from "@/app/context/HistoryContext";
 
 export default function QueryField() {
   const [loading, setLoading] = useState(false);
@@ -10,6 +11,8 @@ export default function QueryField() {
 
   const { hostname, portId, username, password, database } =
     useConnectionContext();
+
+  const { historyBlock, setHistoryBlock } = useHistoryContext();
 
   const handleQueryAction = async () => {
     setLoading(true);
@@ -32,6 +35,7 @@ export default function QueryField() {
 
       if (data.success) {
         setResponse(`${data.query}`);
+        setHistoryBlock((prev) => [...prev, data.query]);
       } else {
         setResponse(`Error: ${data.error}`);
       }
